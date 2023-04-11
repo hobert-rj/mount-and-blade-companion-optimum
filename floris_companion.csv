@@ -1,0 +1,23 @@
+#,COMPANION,DISLIKES_Conditions,DISLIKES1,DISLIKES2,DISLIKES_AS_EMISSARY,LIKES,Noble?,COSTS,PARTY_SKILLS
+1,Borcha,Heavy Losses,Deshavi,Ghazwan,Lezalit,Marnid,,300,"Tracking, Pathfinding, Spotting"
+2,Marnid,"Failing Quests, Returning Serfs, Robbing Villages/Caravans",Baheshtur,Nadia,Klethi,Borcha,,Free,"Wound Treatment, First Aid, Trade"
+3,Ymira,"Leaving Troops, Returning Serfs, Robbing Villages",Odval,Sajjad,Baheshtur,Alayen,,Free,"Wound Treatment, Surgery, First Aid, Trade"
+4,Rolf,Retreating,Bunduk,Deshavi,Firentis,Sajjad,Yes,300,"Tactics, Surgery, First Aid"
+5,Baheshtur,"Hunger, Not Being Paid, Retreating, Heavy Casualties",Marnid,Katrin,Floris,Ghazwan,Yes,400,
+6,Firentis,"Failing Quests, Too Much Fighting, Robbing Villages",Katrin,Nizar,Matheld,Floris,Yes,Free,Trainer
+7,Deshavi,"Hunger, Heavy Casualties",Borcha,Rolf,Edwyn,Klethi,,300,"Tracking, Pathfinding, Spotting"
+8,Matheld,Retreating,Jeremus,Edwyn,Marnid,Nizar,Yes,500,Tactics
+9,Alayen,Failing Quests,Floris,Odval,Borcha,Ymira,Yes,300,Tactics
+10,Bunduk,"Heavy Casualties, Robbing Villages",Rolf,Lezalit,Deshavi,Katrin,,200,"Trainer, Tactics, First Aid"
+11,Katrin,"Hunger, Not Being Paid, Heavy Casualties",Firentis,Baheshtur,Artimenner,Bunduk,,100,"Foraging, Wound Treatment, First Aid, Trade"
+12,Jeremus,"Too Much Fighting, Returning Serfs, Robbing Villages",Matheld,Artimenner,Nizar,Odval,,Free,"Wound Treatment, Surgery, First Aid, Trade"
+13,Nizar,Retreating,Nadia,Firentis,Bunduk,Matheld,,300,
+14,Lezalit,,Edwyn,Bunduk,Katrin,Artimenner,Yes,400,Trainer
+15,Artimenner,"Hunger, Failing Quests, Heavy Casualties",Ghazwan,Jeremus,Rolf,Lezalit,,300,"Tracking, Tactics, Spotting, Engineer, Trade"
+16,Klethi,Retreating,Sajjad,Floris,Jeremus,Deshavi,,200,"Tracking, Pathfinding, Spotting"
+17,Floris,"Hunger,Heavy Casualties",Klethi,Alayen,Ghazwan,Firentis,Yes,"20,000","Trainer, Tracking, Tactics, Pathfinding, Trade"
+18,Nadia,"Returning Serfs, Robbing Villages, Failing Quests",Marnid,Nizar,Alayen,Edwyn,,Free,
+19,Odval,"Hunger, Not Being Paid",Ymira,Alayen,Sajjad,Jeremus,,200,"Tracking, Pathfinding, Spotting"
+20,Sajjad,"Hunger, Not Being Paid, Failing Quests",Ymira,Klethi,Nadia,Rolf,,300,
+21,Ghazwan,"Robbing Villages, Retreating",Borcha,Artimenner,Odval,Baheshtur,Yes,400,"Tactics, Spotting, Trade"
+22,Edwyn,"Robbing Villages, Failing Quests",Matheld,Lezalit,Ymira,Nadia,,300,"Tracking, Pathfinding, Spotting, Trade"

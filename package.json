@@ -1,0 +1,24 @@
+{
+  "name": "mount_and_blade_warband_companion_optimum",
+  "version": "1.0.0",
+  "description": "Helps you to find the optimum combination of companions based on safe relations between companions and transition between them when you make some of them lords. It helps you find initial and then secondary combination of companions based on the rules you set.",
+  "main": "companion.js",
+  "scripts": {
+    "start": "node companion.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "type": "module",
+  "keywords": [
+    "Warband",
+    "Floris",
+    "Floris",
+    "Evolved",
+    "Mount",
+    "and",
+    "Blade",
+    "Game",
+    "Companions"
+  ],
+  "author": "Hossein Rajabi",
+  "license": "ISC"
+}
