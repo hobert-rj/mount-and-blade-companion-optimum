@@ -1,1 +1,4 @@
 /result
+/node_modules
+/dist
+/.idea
