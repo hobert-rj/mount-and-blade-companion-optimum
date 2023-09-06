@@ -1,5 +1,6 @@
 import { Nobles } from "./heros.js";
-import fs from "fs";
+import {promises as fsPromises} from "fs";
+import {dirname} from "path";
 
 export function GetAllSubsets(theArray, minLength) {
   return theArray
@@ -29,9 +30,10 @@ export function Stringify(arr) {
   return r;
 }
 
-export function Write(path, data) {
+export async function Write(filePath, fileContent) {
   try {
-    fs.writeFileSync(path, data);
+    await fsPromises.mkdir(dirname(filePath), { recursive: true });
+    await fsPromises.writeFile(filePath, fileContent, 'utf-8');
   } catch (err) {
     console.error(err);
   }
