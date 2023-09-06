@@ -1,10 +1,10 @@
-import { Heroes, Nobles } from "./heros.js";
+import { heroes, Nobles } from "./heros.js";
 import { GetCompanionSafeSub } from "./safe_subs.js";
 import { GetCompanionSafeSubsLordSubs } from "./lord_subs.js";
 import { Stringify, Write } from "./util.js";
 import { AnalyzeSortCompanionSafeSubsLordSubs } from "./analyze_subs.js";
 
-const safeSubs = GetCompanionSafeSub(Heroes, 7),
+const safeSubs = GetCompanionSafeSub(heroes, 7),
   lords = Nobles.filter((el) => el !== "Lezalit");
 
 Write("./result/floris_companion.txt", Stringify(safeSubs));

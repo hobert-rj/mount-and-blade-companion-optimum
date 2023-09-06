@@ -1,4 +1,6 @@
-export const Heroes = {
+import {Heroes} from "./types/heros.type";
+
+export const heroes: Heroes = {
   Borcha: {
     COMPANION: "Borcha",
     DISLIKES_Conditions: "Heavy Losses",
@@ -244,4 +246,4 @@ export const Heroes = {
   },
 };
 
-export const Nobles = Object.keys(Heroes).filter((key) => Heroes[key].Noble);
+export const Nobles = Object.keys(heroes).filter((key) => heroes[key].Noble);
