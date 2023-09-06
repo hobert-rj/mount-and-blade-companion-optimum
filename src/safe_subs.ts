@@ -1,24 +1,26 @@
-import { GetAllSubsets } from "./util.js";
+import {getAllSubsets} from "./util.js";
+import {CompanionSubsets} from "./types/companion-id.type";
+import {Companions} from "./types/companion.type";
 
-export function GetCompanionSafeSub(CompanionList, minLength) {
-  const safeSubs = [],
-    herosSubsets = GetAllSubsets(Object.keys(CompanionList), minLength);
+export function getCompanionSafeSubsets(companions: Companions, minLength: number): CompanionSubsets {
+  const safeCompanionSubsets: CompanionSubsets = []
+  const companionSubsets = getAllSubsets(Object.keys(companions), minLength);
 
-  for (let sub of herosSubsets) {
+  for (const companionSubset of companionSubsets) {
     let allow = true;
-    for (let hero of sub) {
-      let heroObj = CompanionList[hero];
-      let dislikes = 0,
-        likes = 0;
-      if (sub.findIndex((el) => el === heroObj.DISLIKES1) !== -1) {
+    for (const companionId of companionSubset) {
+      const companion = companions[companionId];
+      let dislikes = 0;
+      let likes = 0;
+      if (companionSubset.findIndex((id) => id === companion.DISLIKES1) !== -1) {
         dislikes += 1;
       }
 
-      if (sub.findIndex((el) => el === heroObj.DISLIKES2) !== -1) {
+      if (companionSubset.findIndex((id) => id === companion.DISLIKES2) !== -1) {
         dislikes += 1;
       }
 
-      if (sub.findIndex((el) => el === heroObj.LIKES) !== -1) {
+      if (companionSubset.findIndex((id) => id === companion.LIKES) !== -1) {
         likes += 1;
       }
 
@@ -28,9 +30,9 @@ export function GetCompanionSafeSub(CompanionList, minLength) {
       }
     }
     if (allow) {
-      safeSubs.push(sub);
+      safeCompanionSubsets.push(companionSubset);
     }
   }
 
-  return safeSubs;
+  return safeCompanionSubsets;
 }

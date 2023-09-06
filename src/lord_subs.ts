@@ -1,36 +1,38 @@
-import { GetAllSubsets } from "./util.js";
+import {getAllSubsets} from "./util.js";
+import {INobleLordBasedComposition, NobleLordBasedCompositions} from "./types/noble-lord-based-compositions.type";
+import {CompanionSubsets} from "./types/companion-id.type";
 
-export function GetCompanionSafeSubsLordSubs(SafeSubs, LordsList, minLength) {
-  const safeSubsLordSub = [],
-    lordSubsets = GetAllSubsets(LordsList, minLength);
+export function getSafeNobleLordCompositions(safeCompanionSubsets: CompanionSubsets, nobleLords: string[], minLength: number): NobleLordBasedCompositions {
+  const nobleLordCompositions: NobleLordBasedCompositions = [];
+  const nobleLordSubsets = getAllSubsets(nobleLords, minLength);
 
-  for (let lordSub of lordSubsets) {
-    const r = {
-      lords: [lordSub],
+  for (const nobleLordList of nobleLordSubsets) {
+    const nobleLordBasedComposition: INobleLordBasedComposition = {
+      lords: [nobleLordList],
       withLord: [],
       noLord: [],
     };
 
-    for (let sub of SafeSubs) {
-      let allLord = true,
-        noLord = true;
-      for (let lord of lordSub) {
-        const index = sub.indexOf(lord);
-        allLord = allLord && index !== -1;
-        noLord = noLord && index === -1;
+    for (const safeCompanionList of safeCompanionSubsets) {
+      let allLord = true;
+      let noLord = true;
+      for (const nobleLordId of nobleLordList) {
+        const nobleLordIndex = safeCompanionList.indexOf(nobleLordId);
+        allLord = allLord && nobleLordIndex !== -1;
+        noLord = noLord && nobleLordIndex === -1;
       }
 
       if (allLord) {
-        r.withLord.push(sub);
+        nobleLordBasedComposition.withLord.push(safeCompanionList);
       }
 
       if (noLord) {
-        r.noLord.push(sub);
+        nobleLordBasedComposition.noLord.push(safeCompanionList);
       }
     }
 
-    safeSubsLordSub.push(r);
+    nobleLordCompositions.push(nobleLordBasedComposition);
   }
 
-  return safeSubsLordSub;
+  return nobleLordCompositions;
 }

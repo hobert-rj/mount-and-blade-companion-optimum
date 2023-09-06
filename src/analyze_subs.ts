@@ -1,17 +1,24 @@
-export function AnalyzeSortCompanionSafeSubsLordSubs(SafeSubsLordSub) {
-  const finalResult = [];
+import {NobleLordBasedCompositions} from "./types/noble-lord-based-compositions.type";
+import {minimumScore} from "./constants";
+import {ResultCompositions} from "./types/result-composiotion.type";
 
-  for (let sub of SafeSubsLordSub) {
-    for (let withLord of sub.withLord) {
-      for (let noLord of sub.noLord) {
-        const persistent = withLord.filter((el) => noLord.indexOf(el) !== -1),
-          score =
-            sub.lords[0].length * 2 + persistent.length + noLord.length * 2;
-        if (score > 34) {
+export function analyzeSortCompanions(
+  nobleLordBasedCompositions: NobleLordBasedCompositions
+): ResultCompositions {
+  const finalResult: ResultCompositions = [];
+
+  for (const nobleLordBasedComposition of nobleLordBasedCompositions) {
+    for (const withLordCompanionList of nobleLordBasedComposition.withLord) {
+      for (const noLordCompanionList of nobleLordBasedComposition.noLord) {
+        const persistent = withLordCompanionList.filter((id) =>
+          noLordCompanionList.indexOf(id) !== -1);
+        const score = nobleLordBasedComposition.lords[0].length * 2
+          + persistent.length + noLordCompanionList.length * 2;
+        if (score > minimumScore) {
           finalResult.push({
-            lords: sub.lords[0],
+            lords: nobleLordBasedComposition.lords[0],
             persistent: persistent,
-            phase2: noLord.filter((el) => persistent.indexOf(el) === -1),
+            phase2: noLordCompanionList.filter((id) => persistent.indexOf(id) === -1),
             score,
           });
         }

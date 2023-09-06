@@ -1,38 +1,95 @@
-import { Nobles } from "./heros.js";
+import {nobleCompanions} from "./companions";
 import {promises as fsPromises} from "fs";
 import {dirname} from "path";
+import {CompanionList, CompanionSubsets} from "./types/companion-id.type";
+import {NobleLordBasedComposition, NobleLordBasedCompositions} from "./types/noble-lord-based-compositions.type";
+import {ResultComposition, ResultCompositions} from "./types/result-composiotion.type";
 
-export function GetAllSubsets(theArray, minLength) {
-  return theArray
-    .reduce(
-      (subsets, value) => subsets.concat(subsets.map((set) => [value, ...set])),
-      [[]]
-    )
-    .sort(function (a, b) {
-      return b.length - a.length;
+export function getAllSubsets(companionList: CompanionList, minLength: number): CompanionSubsets {
+  return companionList
+    .reduce<string[][]>(
+      (companionSubsets, companionId) =>
+        companionSubsets.concat(companionSubsets.map((set) => [companionId, ...set]))
+      , [[]])
+    .sort(function (companionListA, companionListB) {
+      return companionListB.length - companionListA.length;
     })
-    .filter((el) => el.length >= minLength);
+    .filter((companionList) => companionList.length >= minLength);
 }
 
-export function Stringify(arr) {
+export function stringifySubsets(companionSubsets: CompanionSubsets): string {
   let r = "";
-  for (let sub of arr) {
-    let nobles_count = 0;
-    r = r + "(" + sub.length + ")";
-    for (let hero of sub) {
-      r = r + ", " + hero;
-      if (Nobles.indexOf(hero) !== -1) {
-        nobles_count += 1;
+  for (const companionList of companionSubsets) {
+    let noblesCount = 0;
+    r = r + "(" + companionList.length + ")";
+    for (const companionId of companionList) {
+      r = r + ", " + companionId;
+      if (nobleCompanions.indexOf(companionId) !== -1) {
+        noblesCount += 1;
       }
     }
-    r = r + " (Nobles: " + nobles_count + ") " + "\n";
+    r = r + " (Nobles: " + noblesCount + ") " + "\n";
   }
   return r;
 }
 
-export async function Write(filePath, fileContent) {
+export function stringifyCompositions(nobleLordBasedCompositions: NobleLordBasedCompositions) {
+  let r = "";
+  for (const nobleLordBasedComposition of nobleLordBasedCompositions) {
+    r = r + "{\n";
+    for (const [key, companionSubsets] of
+      Object.entries(nobleLordBasedComposition as NobleLordBasedComposition)) {
+      if (Array.isArray(companionSubsets)) {
+        r = r + "\t" + key + ": {\n";
+        for (const companionList of companionSubsets) {
+          let noblesCount = 0;
+          r = r + "\t\t(" + companionList.length + ")";
+          for (const companionId of companionList) {
+            r = r + ", " + companionId;
+            if (nobleCompanions.indexOf(companionId) !== -1) {
+              noblesCount += 1;
+            }
+          }
+          r = r + " (Nobles: " + noblesCount + ") " + "\n";
+        }
+        r = r + "\t}\n";
+      } else {
+        r = r + `\t${key}: ${nobleLordBasedComposition[key]}\n`;
+      }
+    }
+    r = r + "}\n";
+  }
+  return r;
+}
+
+export function stringifyResults(resultCompositions: ResultCompositions) {
+  let r = "";
+  for (const resultComposition of resultCompositions) {
+    r = r + "{\n";
+    for (const [key, companionList] of
+      Object.entries(resultComposition as ResultComposition)) {
+      if (Array.isArray(companionList)) {
+        let noblesCount = 0;
+        r = r + "\t" + key + ": (" + companionList.length + ")";
+        for (const companionId of companionList) {
+          r = r + ", " + companionId;
+          if (nobleCompanions.indexOf(companionId) !== -1) {
+            noblesCount += 1;
+          }
+        }
+        r = r + " (Nobles: " + noblesCount + ") " + "\n";
+      } else {
+        r = r + `\t${key}: ${companionList}\n`;
+      }
+    }
+    r = r + "}\n";
+  }
+  return r;
+}
+
+export async function write(filePath: string, fileContent: string) {
   try {
-    await fsPromises.mkdir(dirname(filePath), { recursive: true });
+    await fsPromises.mkdir(dirname(filePath), {recursive: true});
     await fsPromises.writeFile(filePath, fileContent, 'utf-8');
   } catch (err) {
     console.error(err);

@@ -1,4 +1,4 @@
-export interface IHero {
+export interface ICompanion {
     COMPANION: string,
     DISLIKES_Conditions: string,
     DISLIKES1: string,
@@ -9,3 +9,5 @@ export interface IHero {
     COSTS: string,
     PARTY_SKILLS: string,
 }
+
+export type Companions = { [key: string]: ICompanion };
