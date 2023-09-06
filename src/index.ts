@@ -1,5 +1,5 @@
-import {companions, nobleCompanions} from "./companions";
-import {excludeNobles} from "./constants";
+import {companions, nobleCompanions} from "./companions.js";
+import {excludeNobles} from "./constants.js";
 import {getCompanionSafeSubsets} from "./safe_subs.js";
 import {getSafeNobleLordCompositions} from "./lord_subs.js";
 import {stringifyCompositions, stringifyResults, stringifySubsets, write} from "./util.js";

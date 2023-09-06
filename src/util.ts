@@ -1,4 +1,4 @@
-import {nobleCompanions} from "./companions";
+import {nobleCompanions} from "./companions.js";
 import {promises as fsPromises} from "fs";
 import {dirname} from "path";
 import {CompanionList, CompanionSubsets} from "./types/companion-id.type";

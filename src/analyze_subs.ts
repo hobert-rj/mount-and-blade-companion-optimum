@@ -1,5 +1,5 @@
 import {NobleLordBasedCompositions} from "./types/noble-lord-based-compositions.type";
-import {minimumScore} from "./constants";
+import {minimumScore} from "./constants.js";
 import {ResultCompositions} from "./types/result-composiotion.type";
 
 export function analyzeSortCompanions(
